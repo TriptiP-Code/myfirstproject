@@ -1,0 +1,211 @@
+/* style.css - Modern base styles */
+
+/* =========================
+   CSS Variables (theming)
+   ========================= */
+:root{
+  --bg: #f7f8fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --accent-strong: #1e40af;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --radius: 12px;
+  --glass: rgba(255,255,255,0.6);
+  --shadow: 0 6px 18px rgba(15,23,42,0.08);
+  --container-width: 1100px;
+  --gap: 1.25rem;
+  font-size: 16px;
+}
+
+/* Dark mode (toggle by adding .dark on <html> or <body>) */
+.dark {
+  --bg: #0b1220;
+  --card: #0f1724;
+  --text: #e6eef8;
+  --muted: #9aa6bd;
+  --glass: rgba(255,255,255,0.03);
+  --shadow: 0 8px 30px rgba(2,6,23,0.6);
+}
+
+/* =========================
+   Base / Reset
+   ========================= */
+* { box-sizing: border-box; }
+html,body { height: 100%; margin: 0; padding: 0; }
+body{
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, var(--bg), var(--bg));
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+  padding: 2rem;
+}
+
+/* =========================
+   Container & Grid
+   ========================= */
+.container{
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Simple responsive two-column layout */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--gap);
+  align-items: start;
+}
+@media (max-width: 900px){
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* =========================
+   Card component
+   ========================= */
+.card{
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+  transition: transform .18s ease, box-shadow .18s ease;
+  overflow: hidden;
+}
+.card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(2,6,23,0.12);
+}
+
+/* Card header/title */
+.card h3{
+  margin: 0 0 .5rem 0;
+  font-size: 1.125rem;
+  letter-spacing: -0.01em;
+}
+.card p { margin: 0; color: var(--muted); }
+
+/* =========================
+   Buttons
+   ========================= */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .6rem .9rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: var(--glass);
+  color: var(--text);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn:active{ transform: translateY(1px); }
+
+/* Primary button */
+.btn-primary{
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+  color: white;
+  box-shadow: 0 6px 16px rgba(37,99,235,0.18);
+}
+
+/* Ghost / outline */
+.btn-ghost{
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Small / large utilities */
+.btn-sm{ padding: .35rem .6rem; font-size: .9rem; }
+.btn-lg{ padding: .9rem 1.2rem; font-size: 1.05rem; }
+
+/* =========================
+   Form elements
+   ========================= */
+.input, textarea, select{
+  width: 100%;
+  padding: .75rem;
+  border-radius: 10px;
+  border: 1px solid rgba(15,23,42,0.06);
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.01));
+  font-size: 1rem;
+  color: var(--text);
+  outline: none;
+  transition: box-shadow .12s ease, border-color .12s ease;
+}
+.input:focus, textarea:focus, select:focus{
+  box-shadow: 0 6px 20px rgba(37,99,235,0.08);
+  border-color: var(--accent-strong);
+}
+
+/* Simple form layout */
+.form-row{ display: grid; gap: .75rem; margin-bottom: .75rem; }
+.form-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+@media (max-width: 700px){ .form-grid { grid-template-columns: 1fr; } }
+
+/* =========================
+   Typography & Helpers
+   ========================= */
+.lead { font-size: 1.05rem; color: var(--muted); }
+.kicker { font-size: .85rem; color: var(--accent-strong); font-weight: 700; text-transform: uppercase; letter-spacing: .07em; }
+.small { font-size: .875rem; color: var(--muted); }
+
+/* spacing utilities */
+.mt-1 { margin-top: .5rem; }
+.mt-2 { margin-top: 1rem; }
+.mb-1 { margin-bottom: .5rem; }
+
+/* =========================
+   Simple nav/header
+   ========================= */
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.brand { display: flex; gap: .75rem; align-items: center; font-weight: 700; font-size: 1.05rem; }
+.brand .logo {
+  width: 40px; height: 40px; border-radius: 8px;
+  background: conic-gradient(from 180deg at 50% 50%, var(--accent), var(--accent-strong));
+  box-shadow: 0 6px 18px rgba(30,64,175,0.14);
+}
+
+/* =========================
+   Alerts / badges
+   ========================= */
+.alert {
+  padding: .75rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  display: inline-block;
+}
+.alert-success { background: rgba(16,185,129,0.12); color: var(--success); }
+.alert-danger  { background: rgba(239,68,68,0.12); color: var(--danger); }
+
+/* =========================
+   Utility: centered empty state
+   ========================= */
+.empty {
+  border-radius: var(--radius);
+  padding: 3rem 1.25rem;
+  text-align: center;
+  background: repeating-linear-gradient(45deg, rgba(0,0,0,0.01) 0 2px, transparent 2px 6px);
+  color: var(--muted);
+}
+
+/* =========================
+   Footer
+   ========================= */
+.footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: .9rem;
+}
